@@ -1,0 +1,362 @@
+/* Base Variables, uniform across all my pages */
+:root{
+    --brand:  #1D4ED8;  /* Royal Blue */
+    --accent: #F59E0B;  /* Gold */
+    --bg:     #ffffffb6;  /* light background */
+    --ink:    #0B1020;  /* dark*/
+    --white:  #ffffff;
+    --dim: lightgray;
+    --hhover:  color-mix(in oklab, var(--ink) 10%, transparent);
+    --ff: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans","Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--ff);
+    line-height:1.55;
+}
+
+/* On darkmode, flip the global variables */
+html:has(#themeToggle:checked){
+    --bg:#0B1020;
+    --ink:#F3F4F6;
+    --dim:var(--bg);
+}
+
+/* Style for the light mode - dark mode toggler */
+.theme-toggle-container{
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2rem;  /* stick to bottom */
+    z-index: 10000;
+    /* respecting iPhone safe area */
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-right: env(safe-area-inset-right, 0);
+}
+
+.theme-toggle{
+    position:absolute;
+    inline-size:1px; 
+    block-size:1px;
+    margin:-1px; 
+    padding:0; 
+    border:0;
+    overflow:hidden; 
+    clip:rect(0 0 0 0); 
+    white-space:nowrap;  /* visually hidden */
+}
+
+.theme-switch{
+    display:inline-flex; 
+    align-items:center; 
+    gap:.6rem;
+    cursor:pointer; 
+    user-select:none; 
+    color: var(--brand);
+    font-weight:600;
+}
+
+/* Toggle button pill and knob animation, before click and after click */
+.switch{
+    position:relative;
+    inline-size:56px; 
+    block-size:32px;
+    border-radius:999px;
+    background: var(--dim);
+    transition: background .25s ease;
+}
+.switch::after{
+    content:"";
+    position:absolute; 
+    top:4px; 
+    left:4px;
+    inline-size:24px; 
+    block-size:24px;
+    border-radius:50%;
+    background:#fff;
+    transition: transform .25s ease;
+}
+
+/* changing the state and transition of the switch button when checked */
+.theme-toggle:checked + .theme-switch .switch{
+    background: var(--brand);
+}
+.theme-toggle:checked + .theme-switch .switch::after{
+    transform: translateX(24px);
+}
+
+
+/* Header styles */
+header{
+    border-bottom: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+    background: var(--dim) !important;
+    position: sticky;
+    top:0;
+    z-index: 999;  /* stay on top */
+    background-color: var(--hhover);
+}
+
+/* general style for all containers */
+.container{
+    max-width: 1200px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* styling the header container to use flexbox for layout */
+header .container{
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    gap:1rem;
+}
+
+/* styling the header logo image */
+header .logo img{
+    height: 80px;
+    width: auto;
+}
+
+/* Hiding the mobile navigation toggle button */
+.mobile-nav-toggle{
+  background: none;
+  display: none;  /* hidden by default */
+  border: none;
+  cursor: pointer;
+}
+
+ /* styling the navigation menu list */
+.menu-nav ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+    display: flex;
+    gap:2rem;
+    
+}
+.menu-nav a{
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    padding:.5rem;
+    border-radius: 4px;
+    transition: background .25s ease, color .25s ease;
+}
+
+/* styling the menu links on hover and focus */
+.menu-nav a:hover,
+.menu-nav a:focus{
+    color: var(--brand);
+}
+
+.menu-nav a[aria-current="page"]{
+    color: var(--brand);
+    font-weight: 700;
+}
+
+ /* styling the last button of the menu links(dashboard button) */
+.menu-nav ul li:last-child a{
+    background: var(--brand);
+    color: var(--white);
+    padding:0.8rem;
+    border-radius: 15px;
+}
+.menu-nav ul li:last-child a:hover{
+    background: var(--accent);
+}
+
+/* style for the hero section on the homepage */
+.hero{
+    position: relative;
+    min-height: 85vh;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    color: #fff;     
+    background-image: url("../images/nf3.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    isolation: isolate;
+}
+.hero::before{
+    content:"";
+    position:absolute; inset:0;
+    /* Dark overlay on hero image to increase text visibility */
+    background: rgba(0,0,0,0.45);
+    z-index:-1;  
+}
+
+/* gentle top-bottom gradient on top of the dark layer */
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.5));
+  z-index:-1;
+}
+.hero .container{
+    color: lightgray;
+    padding-top: 2rem;
+    margin-inline: auto;
+}
+.hero h1{
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p{
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+.author-link{
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* styling the buttons in the hero section */
+.hero-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.normal-button, .button-outline{
+    background-color: var(--accent);
+    color: lightgray;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: background .25s ease, color .25s ease;
+}
+.button-outline{
+    background: transparent;
+    border: 2px solid var(--accent);
+}
+
+/* styling the hover behavior of the hero section buttons */
+.normal-button:hover, .normal-button:focus{
+    background-color: var(--brand);
+    color: var(--white);
+}
+.button-outline:hover, .button-outline:focus{
+    background-color: var(--accent);
+    color: var(--white);
+    transition: background .25s ease, color .25s ease;
+}
+
+/* styling the features section */
+.features{
+    padding: 4rem 0;
+}
+.features .container{
+    margin-inline: auto;
+    text-align: center;
+}
+.features .container h1{
+    color: var(--brand);
+}
+.features .container .features-description{
+    margin-bottom: 5rem;
+    font-size: 1.1rem;
+}
+.features .container ul{
+    display: flex;
+    list-style-type: none;
+    gap: 1.5rem;
+}
+.features .container ul li{
+    flex:1;
+    padding: 1rem;
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* adding a hover effect for each list of the features */
+.features .container ul li:hover{
+    border-color: var(--brand);
+    box-shadow: 0 10px 8px rgba(0,0,0,0.1);
+    transition: border-color .25s ease-in-out, box-shadow .25s ease;
+}
+.features .container ul li h3{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* styling the testimonials section */
+.testimonials{
+    padding: 4rem 0;
+    background-color: color-mix(in oklab, var(--ink) 5%, transparent);
+}
+.testimonials .container{
+    margin-inline: auto;
+    text-align: center;
+}
+.testimonials .container h1{
+    margin-bottom: 3rem;
+}
+
+/* styling the slider list */
+.testimonial-slider{
+    overflow: hidden;
+    padding-bottom: 1rem;
+}
+.slider-list{
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    --gap: 16px;
+    margin: 0;
+    list-style: none;
+    gap: var(--gap);
+    animation: slide-rotate 16s infinite linear;
+}
+
+/* animation style for the testimonies to slide */
+@keyframes slide-rotate {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(calc(-1 * (100% + var(--gap)) / 3)); }
+  50%  { transform: translateX(calc(-2 * (100% + var(--gap)) / 3)); }
+  75%  { transform: translateX(calc(-3 * (100% + var(--gap)) / 3)); }
+  100% { transform: translateX(0); }
+}
+.slider-item{
+    flex: 0 0 calc((100% - var(--gap) * 2) / 3);
+    scroll-snap-align: start;
+    border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+    border-radius: 12px;
+    background: color-mix(in oklab, var(--bg) 90%, transparent);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.slider-item figure {
+  display: grid; 
+  grid-template-columns: 160px 1fr; 
+  gap: 12px; 
+  align-items: center;
+  padding: 12px; 
+  border: 1px solid #E5E7EB; 
+  border-radius: 12px; 
+  background: #fff;
+}
+.slider-item figure .figure-img { 
+    border-radius: 10px; 
+}
+.slider-item blockquote { 
+    margin: 6px 0; 
+    color: #0B1020; 
+    font-style: italic; 
+    font-size: 1rem; 
+}
+.slider-item .meta { 
+    display: block; 
+    color: #6B7280; 
+    font-size: 0.9rem; 
+}

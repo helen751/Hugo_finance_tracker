@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="260" viewBox="0 0 980 260" role="img" aria-label="Hugo Finance Tracker logo (tight)">
+  <defs>
+    <style>
+      .word { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; font-weight: 800; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- Icon: coin ring + rising bars + tick (unchanged illustration) -->
+  <g transform="translate(40,40)">
+    <circle cx="120" cy="90" r="80" fill="#1D4ED8" opacity="0.18"/>
+    <circle cx="120" cy="90" r="62" fill="#1D4ED8" opacity="0.35"/>
+    <rect x="60" y="140" width="36" height="80" rx="8" fill="#F59E0B"/>
+    <rect x="104" y="120" width="36" height="100" rx="8" fill="#F59E0B"/>
+    <rect x="148" y="96" width="36" height="124" rx="8" fill="#F59E0B"/>
+    <path d="M 60 120 L 100 96 L 140 76 L 180 68" fill="none" stroke="#1D4ED8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="180,68 162,56 200,46" fill="#1D4ED8"/>
+  </g>
+
+  <!-- Wordmark moved closer to the icon -->
+  <text class="word" x="300" y="150" font-size="120" fill="#1D4ED8">Hugo</text>
+  <text class="word" x="300" y="210" font-size="36" fill="#F59E0B">Finance Tracker</text>
+</svg>

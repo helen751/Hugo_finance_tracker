@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Hugo Finance Tracker icon">
+  <!-- Transparent background; two colors only -->
+  <!-- Coin rings -->
+  <circle cx="256" cy="196" r="112" fill="#1D4ED8" opacity="0.2"/>
+  <circle cx="256" cy="196" r="92" fill="#1D4ED8" opacity="0.4"/>
+  <!-- Bars -->
+  <rect x="140" y="276" width="48" height="130" rx="12" fill="#F59E0B"/>
+  <rect x="232" y="248" width="48" height="158" rx="12" fill="#F59E0B"/>
+  <rect x="324" y="216" width="48" height="190" rx="12" fill="#F59E0B"/>
+  <!-- Upward tick -->
+  <path d="M 140 252 L 220 216 L 300 196 L 368 188" fill="none" stroke="#1D4ED8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="368,188 344,174 388,166" fill="#1D4ED8"/>
+</svg>

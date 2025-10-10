@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Expense Tracking icon">
+  <title>Expense Tracking</title>
+  <!-- Wallet body -->
+  <rect x="10" y="28" width="76" height="44" rx="10" fill="#1D4ED8" opacity="0.15"/>
+  <rect x="14" y="32" width="68" height="36" rx="8" fill="#1D4ED8" />
+  <!-- Flap -->
+  <rect x="24" y="26" width="40" height="10" rx="5" fill="#F59E0B"/>
+  <!-- Receipt -->
+  <rect x="54" y="36" width="24" height="28" rx="4" fill="#fff"/>
+  <path d="M56 44h16 M56 50h16 M56 56h10" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Minus badge -->
+  <circle cx="76" cy="32" r="10" fill="#F59E0B"/>
+  <path d="M70 32h12" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round"/>
+</svg>

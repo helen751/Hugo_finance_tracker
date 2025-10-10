@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Female avatar 2">
+  <defs><style>/* no fonts; minimal */</style></defs>
+  <!-- shoulders / torso -->
+  <path d="M52 196c0-26 34-44 76-44s76 18 76 44v24H52v-24z" fill="#1D4ED8"/>
+  <!-- neck -->
+  <rect x="112" y="148" width="32" height="28" rx="8" fill="#D7A28B"/>
+  <!-- face -->
+  <circle cx="128" cy="116" r="46" fill="#D7A28B"/>
+  <!-- hair -->
+  <path d="M70 110c6-22 26-40 58-40s52 18 58 40c-10 20-34 30-58 30s-48-10-58-30z" fill="#1F2937"/>
+  <!-- simple eyes -->
+  <circle cx="112" cy="116" r="4" fill="#1B1B1B"/>
+  <circle cx="144" cy="116" r="4" fill="#1B1B1B"/>
+  <!-- smile -->
+  <path d="M108 134c6 8 34 8 40 0" fill="none" stroke="#1B1B1B" stroke-width="3" stroke-linecap="round"/>
+  
+</svg>
