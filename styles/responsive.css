@@ -1,0 +1,111 @@
+/* responsiveness code for the screen 992 and above */
+
+@media (min-width: 768px) {
+    .container { 
+        max-width: 800px; 
+    }
+    .features {
+        padding: 4rem 0;
+    }
+    .features .container ul {
+        flex-direction: row;  /* show features horrizontally */
+        gap: 1.5rem; 
+    }
+    .features .container li {
+        flex: 0 0 calc((100% - 2rem) / 4);  /* two items per row */
+    }
+    .testimonials .container h1 {
+        font-size: 2rem;  /* smaller heading on small screens */
+    }
+    .slider-item {
+        flex: 0 0 calc((100% - 32px) / 3);
+        
+    }
+    .slider-list {
+        --gap:16px;
+        gap:var(--gap);
+    }
+    .footer nav ul{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    footer .container .footer-content{
+        gap: 7rem;
+    }
+
+    .footer .container{
+        text-align: center;
+    }
+    .footer{
+        padding: 2rem 0;
+    }
+    .footer-seperator{
+        display: block;
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .container { 
+        max-width: 960px; 
+    }
+    .mobile-nav-toggle {
+        display: none;  /* hide mobile toggle on larger screens */
+    }
+    .menu-nav {
+        display: block;  /* show desktop menu */
+    }
+    
+    .menu-nav ul {
+        display: flex;
+        flex-direction: row;
+        gap:2rem;
+    }
+    .menu-nav a {
+        padding:.5rem;
+    }
+
+    /* making the about section responsive on large screens */
+    .about .container .about-wrapper{
+        flex-direction: row;
+        gap: 5rem;
+        padding: 2rem;
+    }
+    .about .container img {
+        width: 100%; 
+        height: auto;
+        margin: 0 auto; 
+    }
+
+    /* style for the footer section on large screens */
+    
+    footer .container .footer-content{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 20rem;
+    }
+    
+    
+}
+
+
+@media (min-width: 1200px) { 
+    .container { max-width: 1140px; 
+    } 
+    footer .container .footer-content{
+        gap: 30rem;
+    }
+}
+
+@media (min-width: 1400px) { .container { max-width: 1320px; } }
+
+/* making the features appear 2rows on a little larger screen */
+
+
+
+

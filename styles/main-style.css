@@ -88,6 +88,7 @@ html:has(#themeToggle:checked){
 }
 
 
+/* Mobile first styles */
 /* Header styles */
 header{
     border-bottom: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
@@ -117,16 +118,19 @@ header .container{
 
 /* styling the header logo image */
 header .logo img{
-    height: 80px;
+    height: 70px;
     width: auto;
 }
 
 /* Hiding the mobile navigation toggle button */
 .mobile-nav-toggle{
   background: none;
-  display: none;  /* hidden by default */
+  display: block;  /* hidden by default */
   border: none;
   cursor: pointer;
+}
+.menu-nav {
+    display: none;  /* hide desktop menu */
 }
 
  /* styling the navigation menu list */
@@ -134,17 +138,49 @@ header .logo img{
     list-style: none;
     margin:0;
     padding:0;
-    display: flex;
-    gap:2rem;
+    flex-direction: column;  /*  menu items vertically */
+    gap: 1rem;
     
 }
 .menu-nav a{
+    display: block;  /* make links block-level for easier tapping */
+    padding: 0.75rem 1rem;
     text-decoration: none;
     color: var(--ink);
     font-weight: 600;
-    padding:.5rem;
     border-radius: 4px;
     transition: background .25s ease, color .25s ease;
+}
+
+.mobile-nav-toggle img{
+    width: 75px;
+    height: 50px;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] + .menu-nav {
+    display: block;  /* show mobile menu when expanded */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 1rem;
+    z-index: 1000;
+    /* adding some transition for a smooth animation from right to left */
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease forwards;
+}
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* styling the menu links on hover and focus */
@@ -177,7 +213,7 @@ header .logo img{
     align-items: center;
     text-align: center;
     color: #fff;     
-    background-image: url("../images/nf3.webp");
+    background-image: url("../assets/banner/nf3.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -193,10 +229,10 @@ header .logo img{
 
 /* gentle top-bottom gradient on top of the dark layer */
 .hero::after{
-  content:"";
-  position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.5));
-  z-index:-1;
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.5));
+    z-index:-1;
 }
 .hero .container{
     color: lightgray;
@@ -249,13 +285,62 @@ header .logo img{
     transition: background .25s ease, color .25s ease;
 }
 
+ /* styling the about section */
+
+.about{
+    padding: 4rem 0;
+    background-color: color-mix(in oklab, var(--ink) 5%, transparent);
+}
+.about .container{
+    margin-inline: auto;
+    text-align: center;
+}
+
+.about .about-wrapper{
+    display: flex;
+    flex-direction: column;  /* show about section vertically */
+    text-align: center;  
+    gap: 2rem; 
+}
+/* styling the about section image */
+.about .about-wrapper img{
+    flex:1;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 100%;
+    height: auto;
+}
+.about .container h1{
+    color: var(--brand);
+    margin-bottom: 0px !important;
+}
+.about .container .about-wrapper p{
+    max-width: 600px;
+    margin-inline: auto;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    text-align: left;
+   
+}
+.about .container .about-wrapper .about-description-two{
+    margin-bottom: 2.5rem;
+}
+.about .container .about-wrapper .about-content a{
+    background-color: var(--brand);
+    contain: inherit;
+    border-radius: 15px;
+    color: var(--white);
+    margin-right: 50%;
+}
+
 /* styling the features section */
 .features{
-    padding: 4rem 0;
+    padding-right: 2rem;
 }
 .features .container{
     margin-inline: auto;
     text-align: center;
+    margin-bottom: 2rem;
 }
 .features .container h1{
     color: var(--brand);
@@ -266,8 +351,9 @@ header .logo img{
 }
 .features .container ul{
     display: flex;
+    flex-direction: column;
+    gap: 2rem; 
     list-style-type: none;
-    gap: 1.5rem;
 }
 .features .container ul li{
     flex:1;
@@ -299,7 +385,10 @@ header .logo img{
     text-align: center;
 }
 .testimonials .container h1{
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+    color: var(--brand);
+    font-size: 1.5rem;  /* smaller heading on small screens */
 }
 
 /* styling the slider list */
@@ -308,55 +397,145 @@ header .logo img{
     padding-bottom: 1rem;
 }
 .slider-list{
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1rem;
-    --gap: 16px;
-    margin: 0;
-    list-style: none;
-    gap: var(--gap);
-    animation: slide-rotate 16s infinite linear;
+    gap: 8px;  /* smaller gap on small screens */
+    display:flex;
+    flex-wrap: nowrap;
+    margin:0;
+    padding:0;
+    list-style:none;
+
+    /* animation */
+    will-change: transform;
+    transform: translate3d(0,0,0); 
+    transition: transform 600ms cubic-bezier(.22,.61,.36,1);
+
+    /* stop manual X scroll */
+    overflow: hidden; 
+    scroll-snap-type: none; 
+    touch-action: pan-y;      /* prevent horizontal swipe scrolling */
 }
 
-/* animation style for the testimonies to slide */
-@keyframes slide-rotate {
-  0%   { transform: translateX(0); }
-  25%  { transform: translateX(calc(-1 * (100% + var(--gap)) / 3)); }
-  50%  { transform: translateX(calc(-2 * (100% + var(--gap)) / 3)); }
-  75%  { transform: translateX(calc(-3 * (100% + var(--gap)) / 3)); }
-  100% { transform: translateX(0); }
-}
 .slider-item{
-    flex: 0 0 calc((100% - var(--gap) * 2) / 3);
-    scroll-snap-align: start;
+    flex: 0 0 calc(100%);  /* single item view on small screens */
+    box-sizing: border-box;
     border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
     border-radius: 12px;
     background: color-mix(in oklab, var(--bg) 90%, transparent);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
 }
 
+/* styling the slide figure items */
+
 .slider-item figure {
-  display: grid; 
-  grid-template-columns: 160px 1fr; 
-  gap: 12px; 
-  align-items: center;
-  padding: 12px; 
-  border: 1px solid #E5E7EB; 
-  border-radius: 12px; 
-  background: #fff;
+  border-radius: 12px;
+  text-align: center;
+  align-content: center;
 }
 .slider-item figure .figure-img { 
-    border-radius: 10px; 
+    box-shadow: 10px 0px 10px  rgba(0,0,0,0.2);
+    background-color: transparent;
+    margin-bottom: 1rem;
 }
 .slider-item blockquote { 
     margin: 6px 0; 
-    color: #0B1020; 
+    color: var(--ink);
     font-style: italic; 
-    font-size: 1rem; 
+    font-size: 1rem;
+    margin-bottom: 1.5rem; 
 }
-.slider-item .meta { 
+.slider-item .intake { 
     display: block; 
-    color: #6B7280; 
+    color: var(--brand);
     font-size: 0.9rem; 
+}
+
+/* styling the contact section */
+.contact{
+  padding: 2rem 2rem;
+  color:#fff;
+  background-image:
+    linear-gradient(rgba(11, 15, 26, 0.6), rgba(13, 16, 18, 0.957)),
+    url("../assets/banner/nf1.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-height: 200px;
+  padding-bottom: 7rem;
+}
+
+.contact .container h1{
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+.contact .container p{
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+.contact .container ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+    text-align: center;
+}
+.contact .container ul li{
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+.contact .container ul li a{
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 0.6rem;
+}
+
+/* mobile styles for the footer */
+.footer{
+    padding: 2rem 0;
+    background-color: color-mix(in oklab, var(--ink) 10%, transparent);
+}
+.footer .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer .container .footer-content{
+    margin-inline: auto;
+    text-align: center;
+    display: flex;
+
+}
+.footer .footer-logo img{
+    height: auto;
+    width: 250px;
+}
+.footer nav ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.3rem;
+    margin-bottom: 2rem;
+}
+
+.footer nav ul li a{
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.footer nav ul li a:hover{
+    color: var(--accent);
+    translate: transformY(-2px);
+}
+.footer-seperator{
+    border-top: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+    margin-bottom: 1.5rem;
+    display: none;
 }

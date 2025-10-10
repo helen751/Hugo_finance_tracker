@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hugo | Student Finance Tracker</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hugo | Student Finance Tracker</title>
 
-  <!-- Favicons / assets (adjust paths as needed) -->
-  <link rel="icon" href="assets/images/hugo_icon.svg" />
-  <link rel="preload" as="image" href="assets/images/hugo_logo.svg" />
-  <link rel="stylesheet" href="assets/styles/main-style.css" />
+    <!-- Favicons / assets (adjust paths as needed) -->
+    <link rel="icon" href="assets/favicons/hugo_icon.svg" />
+    <link rel="preload" as="image" href="assets/favicons/hugo_logo.svg" />
+    <link rel="stylesheet" href="styles/main-style.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+
+    <script src="scripts/ui.js" defer></script>
 </head>
 <body>
     <!-- Html code for the dark mode toggle button -->
@@ -20,24 +23,24 @@
         </label>
     </div>
     
-
+    <!-- Header section with navigation links -->
     <header class="header">
         <div class="container">
         <div class="brand" tabindex="1">
             <a class="logo" href="index.html">
-            <img src="assets/images/hugo_logo.svg" alt="Hugo Finance Tracker logo" width="180" height="52" />
+            <img src="assets/favicons/hugo_logo.svg" alt="Hugo Finance Tracker logo"/>
             </a>
         </div>
 
         <button class="mobile-nav-toggle" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle menu bar">
-            <img src="assets/images/menu_icon.svg" alt="Menu toggler" width="24" height="24" />
+            <img src="assets/icons/menu_icon.svg" alt="Menu toggler" width="24" height="24" />
         </button>
 
         <nav id="menuNav" class="menu-nav" aria-label="Menu Navigation">
             <ul>
                 <li><a href="index.html" aria-current="page" tabindex="2">Home</a></li>
-                <li><a href="about.html" tabindex="3">About Us</a></li>
-                <li><a href="contact.html" tabindex="4">Contact Us</a></li>
+                <li><a href="#about" tabindex="3">About Us</a></li>
+                <li><a href="#contact" tabindex="4">Contact Us</a></li>
 
                 <li><a href="dashboard.html" tabindex="5">Dashboard</a></li>
             </ul>
@@ -63,6 +66,26 @@
             </div>
         </section>
 
+        <!-- about us section -->
+        <section class="about" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <h1 id="about-title">About Hugo Finance Tracker</h1>
+                <p class="about-description">Hugo is a web app created by Helen to help ALU students manage their finances effectively.</p>
+                <div class="about-wrapper">
+                    <div class="about-img">
+                        <img src="assets/banner/fin3.jpg" alt="Illustration showing a Hugo user counting his money">
+                    </div>
+                    <div class="about-content">
+                        
+                        <p class="about-description">Hugo is a simple, intuitive finance tracking app designed specifically for ALU students. It helps you manage your finances effectively by allowing you to log expenses, track income, set budgets, and generate reports.</p>
+                        <p class="about-description-two">With Hugo, you can easily categorize your spending, monitor your income sources, and stay within your budget limits. The app provides a user-friendly interface and powerful features to help you take control of your financial life.</p>
+
+                        <a href="#contact" class="normal-button about-btn">Contact Helen</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- section for the app showing the user the app fetures -->
         <section class="features" aria-labelledby="features-title">
             <div class="container">
@@ -70,22 +93,22 @@
                 <p class="features-description">Hugo offers some exclusive features that helps you manage your finances effectively!</p>
                 <ul class="feature-list">
                     <li class="feature">
-                        <img src="assets/images/icon-expense.svg" alt="" width="120" height="120" aria-hidden="true">
+                        <img src="assets/icons/icon-expense.svg" alt="" width="120" height="120" aria-hidden="true">
                         <h3>Expense Tracking</h3>
                         <p>Log daily spending, categorize it, and see where your money goes.</p>
                     </li>
                     <li class="feature">
-                        <img src="assets/images/icon-income.svg" alt="" width="120" height="120" aria-hidden="true">
+                        <img src="assets/icons/icon-income.svg" alt="" width="120" height="120" aria-hidden="true">
                         <h3>Income Reporting</h3>
                         <p>Record stipends, salaries, and transfers; view monthly and total income.</p>
                     </li>
                     <li class="feature">
-                        <img src="assets/images/icon-report.svg" alt="" width="120" height="120" aria-hidden="true">
+                        <img src="assets/icons/icon-report.svg" alt="" width="120" height="120" aria-hidden="true">
                         <h3>Report Generation</h3>
                         <p>Export clean summaries (JSON/CSV/PDF) for sharing or record-keeping.</p>
                     </li>
                     <li class="feature">
-                        <img src="assets/images/icon-budget.svg" alt="" width="120" height="120" aria-hidden="true">
+                        <img src="assets/icons/icon-budget.svg" alt="" width="120" height="120" aria-hidden="true">
                         <h3>Budgets &amp; Live Alerts</h3>
                         <p>Set monthly caps per category and get gentle warnings before you overspend.</p>
                     </li>
@@ -93,24 +116,24 @@
             </div>
         </section>
 
-
+        <!-- section for the testimonies of some ALU students who have used the app -->
         <section class="testimonials" aria-labelledby="testimonials-title">
             <div class="container">
                 <h1 id="testimonials-title">What Other ALU Students Say About Hugo!</h1>
                 <div class="testimonial-slider" aria-roledescription="testimonial-slider" aria-label="ALU Students testimonials">
-                    <ul class="slider-list">
+                    <ul class="slider-list" id="slider">
                         <!-- 1 -->
                         <li class="slider-item">
                         <figure>
                             <div class="figure-img">
-                                <img src="assets/images/jerry.svg" alt="Jeremiah Emmanuel, smiling, headshot" width="120" height="120">
+                                <img src="assets/testimonials/jerry.svg" alt="Jeremiah Emmanuel, smiling, headshot" width="120" height="120">
                             </div>
                             <figcaption>
-                                <img src="assets/images/stars-5.svg" width="130" height="24" alt="Rated 5 out of 5 stars">
+                                <img src="assets/testimonials/stars-5.svg" width="130" height="24" alt="Rated 5 out of 5 stars">
                                 <blockquote>Hugo made it easy to track every expense and stay under my category caps.</blockquote>
                                 <footer>
                                     <strong>Jeremiah Emmanuel</strong>
-                                    <span class="meta">Jan 2025 · BSc Software Engineering</span>
+                                    <span class="intake">Jan 2025 · Software Engineering</span>
                                 </footer>
                             </figcaption>
                         </figure>
@@ -120,14 +143,14 @@
                         <li class="slider-item">
                         <figure>
                             <div class="figure-img">
-                                <img src="assets/images/brian.svg" alt="Brian Kettey, portrait" width="120" height="120">
+                                <img src="assets/testimonials/brian.svg" alt="Brian Kettey, portrait" width="120" height="120">
                             </div>
                             <figcaption>
-                                <img src="assets/images/stars-5.svg" width="130" height="24" alt="Rated 5 out of 5 stars">
-                                <blockquote>The monthly reports helped me understand my real spending habits.</blockquote>
+                                <img src="assets/testimonials/stars-5.svg" width="130" height="24" alt="Rated 5 out of 5 stars">
+                                <blockquote>The monthly reports helped me understand my real spending habits. Hugo is the best!</blockquote>
                                 <footer>
                                     <strong>Brian Kettey</strong>
-                                    <span class="meta">Sept 2023 · Entrepreneural Leadership</span>
+                                    <span class="intake">Sept 2023 · Entrepreneural Leadership</span>
                                 </footer>
                             </figcaption>
                         </figure>
@@ -137,14 +160,14 @@
                         <li class="slider-item">
                         <figure>
                             <div class="figure-img">
-                                <img src="assets/images/wisdom.svg" alt="Wisdom Okechukwu, picture" width="120" height="120">
+                                <img src="assets/testimonials/wisdom.svg" alt="Wisdom Okechukwu, picture" width="120" height="120">
                             </div>
                             <figcaption>
-                                <img src="assets/images/stars-3.svg" width="130" height="24" alt="Rated 3 out of 5 stars">
-                                <blockquote>Importing from CSV was seamless. I finally have everything in one place.</blockquote>
+                                <img src="assets/testimonials/stars-3.svg" width="130" height="24" alt="Rated 3 out of 5 stars">
+                                <blockquote>It is very easy for me to export my montly spendings and keep a record of them using Hugo.</blockquote>
                                 <footer>
                                     <strong>Wisdom Okechukwu</strong>
-                                    <span class="meta">Jan 2024 · Software Engineering</span>
+                                    <span class="intake">Jan 2024 · Software Engineering</span>
                                 </footer>
                             </figcaption>
                         </figure>
@@ -154,14 +177,14 @@
                         <li class="slider-item">
                             <figure>
                                 <div class="figure-img">
-                                    <img src="assets/images/roxene.svg" alt="Roxene Iradukunda, picture" width="120" height="120">
+                                    <img src="assets/testimonials/roxene.svg" alt="Roxene Iradukunda, picture" width="120" height="120">
                                 </div>
                                 <figcaption>
-                                <img src="assets/images/stars-4.svg" width="130" height="24" alt="Rated 4 out of 5 stars">
-                                <blockquote>Budgets and alerts keep me accountable, no surprises at month end.</blockquote>
+                                <img src="assets/testimonials/stars-4.svg" width="130" height="24" alt="Rated 4 out of 5 stars">
+                                <blockquote>Setting my budgets and alerts keep me accountable, no surprises at month end.</blockquote>
                                 <footer>
                                     <strong>Roxene Iradukunda</strong>
-                                    <span class="meta">May 2025 · International Business</span>
+                                    <span class="intake">May 2025 · International Business</span>
                                 </footer>
                                 </figcaption>
                             </figure>
@@ -170,6 +193,56 @@
                 </div>
             </div>
         </section>
+
+        <!-- contact section for the user to reach out to me -->
+         <section class="contact" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <h1 id="contact-title">Get In Touch</h1>
+                <p class="contact-description">Have questions, feedback, or want to learn more about Hugo? Reach out to me!</p>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <ul class="contact-list">
+                            <li>
+                                <img src="assets/icons/icon-email-color.svg" alt="Email"><a href="mailto:h.okereke@alustudent.com">h.okereke@alustudent.com</a>
+                            </li>
+                            <li>
+                                <img src="assets/icons/icon-github-color.svg" alt="Github"><a href="https://github.com/helen751" target="_blank">github.com/helen751</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- The footer section including logo, links and copyright -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Brand -->
+            <div class="footer-content">
+                <a class="footer-logo" href="index.html">
+                <img src="assets/favicons/hugo_logo.svg" alt="Hugo Finance" width="160" height="52" loading="lazy">
+                </a>
+
+                <!-- Footer navigation (only these four links) -->
+                <nav class="footer-nav" aria-label="Footer">
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                   
+                    <li><a href="#contact">Contact Us</a></li>
+                     <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+                </nav>
+            </div>
+            <hr class="footer-seperator"/>
+
+            <!-- Ownership notice -->
+            <small class="footer-copyright">
+            © 2025 Hugo Finance. All UI designs and source code are original work by
+            <strong>me: Helen Okereke</strong>.
+            </small>
+        </div>
+        </footer>
+
 </body>
 </html>
