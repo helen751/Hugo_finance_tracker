@@ -670,35 +670,6 @@ main .main-topbar h1{
 .dashboard-nav-toggle{
     display: block;
 }
-/* showing the dasboard aside when toggled */
-.dashboard-nav-toggle[aria-expanded="true"] + aside {
-    display: block;  /* show mobile menu when expanded */
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: var(--bg);
-    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-    border-radius: 0 8px 8px 0;
-    padding: 1rem;
-    z-index: 1000;
-    width: 250px;
-    max-width: 85vw;
-    /* adding some transition for a smooth animation from left to right */
-    transition: all 0.3s ease;
-    animation: slideInLeft 0.3s ease forwards;
-}
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 
 .btn-back{
     background: var(--brand);

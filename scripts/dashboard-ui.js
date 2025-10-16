@@ -1,43 +1,40 @@
 import { loadTxns, loadSettings } from './storage.js';
 // function to toggle the dashboard side bar on mobile
 (() => {
-    const btn     = document.querySelector('.dashboard-nav-toggle');
-    const sidebar = document.getElementById('sidebar');
-    if (!btn || !sidebar) return;
+  const btn = document.querySelector('.dashboard-nav-toggle');
+  const sidebar = document.getElementById('sidebar');
+  if (!btn || !sidebar) return;
 
-    function openNav(){
-      sidebar.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('nav-open');
-    }
-    function closeNav(){
-      sidebar.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
-    }
-    function isOpen(){ return sidebar.classList.contains('is-open'); }
+  const openNav = () => {
+    sidebar.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-open');
+  };
+  const closeNav = () => {
+    sidebar.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+  const isOpen = () => sidebar.classList.contains('is-open');
 
-    // Toggle on click
-    btn.addEventListener('click', () => isOpen() ? closeNav() : openNav());
+  btn.addEventListener('click', () => (isOpen() ? closeNav() : openNav()));
 
-    // Close on outside click (mobile only)
-    document.addEventListener('click', (e) => {
-      const isMobile = matchMedia('(max-width: 991.98px)').matches;
-      if (!isMobile) return;
-      if (btn.contains(e.target) || sidebar.contains(e.target)) return;
-      if (isOpen()) closeNav();
-    });
+  document.addEventListener('click', (e) => {
+    const isMobile = matchMedia('(max-width: 991.98px)').matches;
+    if (!isMobile) return;
+    if (btn.contains(e.target) || sidebar.contains(e.target)) return;
+    if (isOpen()) closeNav();
+  });
 
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isOpen()) closeNav();
-    });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) closeNav();
+  });
 
-    // Optional: close if viewport grows to desktop while open
-    matchMedia('(min-width: 992px)').addEventListener?.('change', m => {
-      if (m.matches) closeNav();
-    });
-  })();
+  matchMedia('(min-width: 992px)').addEventListener?.('change', m => {
+    if (m.matches) closeNav();
+  });
+})();
+
 
 
 //rendering the dashboard statistics

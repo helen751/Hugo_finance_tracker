@@ -205,27 +205,28 @@
 }
 
 @media (max-width: 991.98px){
-    .sidebar{
-        display: block;                 /* keep box to animate */
-        position: fixed;
-        inset: 0 auto 0 0;              /* left panel */
-        width: 85vw;
-        max-width: 280px;
-        height: 100dvh;
-        background: var(--bg);
-        box-shadow: 2px 0 16px rgba(0,0,0,.15);
-        transform: translateX(-24px);
-        opacity: 0;
-        pointer-events: none;
-        transition: transform .3s ease, opacity .3s ease;
-        z-index: 1000;
-        overflow: auto;
-    }
-    .sidebar.is-open{
-        transform: translateX(0);
-        opacity: 1;
-        pointer-events: auto;
-    }
+  .dashboard-layout .sidebar{
+    display: block;                 /* overrides base display:none */
+    position: fixed;
+    inset: 0 auto 0 0;              /* left side */
+    width: 85vw;
+    max-width: 280px;
+    height: 100dvh;
+    background: var(--bg);
+    box-shadow: 2px 0 16px rgba(0,0,0,.15);
+    transform: translateX(-100%);   /* completely hidden off-screen */
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .3s ease, opacity .3s ease;
+    z-index: 1000;
+    overflow: auto;
+  }
+  .dashboard-layout .sidebar.is-open{
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
 
     /* optional: lock body scroll when open */
     body.nav-open{ overflow: hidden; }
