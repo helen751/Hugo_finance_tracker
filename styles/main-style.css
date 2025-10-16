@@ -188,7 +188,7 @@ html:has(#themeToggle:checked){
     height: 50px;
 }
 
-.mobile-nav-toggle[aria-expanded="true"] + #sidebar {
+.mobile-nav-toggle[aria-expanded="true"] + .menu-nav {
     display: block;  /* show mobile menu when expanded */
     position: absolute;
     top: 100%;

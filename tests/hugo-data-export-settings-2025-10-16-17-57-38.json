@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "name": "",
+    "theme": "system",
+    "warnOverCap": "on",
+    "budget": {
+      "food": 0,
+      "books": 0,
+      "transport": 0,
+      "entertainment": 0,
+      "fees": 0,
+      "other": 0
+    }
+  }
+}

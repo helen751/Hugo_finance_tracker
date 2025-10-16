@@ -1,4 +1,4 @@
-# Hugo Finance Tracker
+# Hugo Finance Tracker (Live Demo: <a href="https://helen751.github.io/frontend-web-dev-summative-Helen_Okereke/">Click to view</a>)
 
 A mobile‑first, accessible, framework‑free personal finance tracker for recording income and expenses, visualizing monthly stats, and importing/exporting data — all in the browser using `localStorage`.
 
