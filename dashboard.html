@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugo | Dashboard</title>
+
+    <link rel="icon" href="assets/favicons/hugo_icon.svg" />
+    <link rel="preload" as="image" href="assets/favicons/hugo_logo.svg" />
+
+    <link rel="stylesheet" href="styles/main-style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+
+        <!-- Sidebar: brand and dashboard navigation -->
+        <aside class="sidebar" id="sidebar">
+
+            <a class="brand" href="index.html" aria-label="Hugo Finance — Home">
+                <img src="assets/favicons/hugo_logo.svg" alt="Hugo Finance Logo" width="148" height="48" />
+            </a>
+
+            <nav class="sidebar-nav" aria-label="Dashboard">
+                <ul>
+                <li>
+                    <button type="button" class="nav-btn" data-panel="panel-dashboard" aria-current="page" onclick="showPanel('panel-stats')">
+                    Dashboard
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-panel="panel-add-income" onclick="showPanel('panel-add-income')">
+                    Add new income
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-panel="panel-add-expense" onclick="showPanel('panel-add-expense')">
+                    Add expense
+                    </button>
+                </li>
+                <hr class="nav-breaker">
+                <li>
+                    <details class="details-dropdown">
+                    <summary>Transactions</summary>
+                    <ul>
+                        <li><button type="button" class="nav-btn" onclick="viewTransactions('all'); return false;">All transactions</button></li>
+                        <li><button type="button" class="nav-btn" onclick="viewTransactions('expense'); return false;">Expenses</button></li>
+                        <li><button type="button" class="nav-btn" onclick="viewTransactions('income'); return false;">Incomes</button></li>
+                    </ul>
+                    </details>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-panel="panel-settings" onclick="populateSettingsForm(); showPanel('panel-settings')">
+                    Settings
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-panel="panel-import" onclick="showPanel('panel-import')">
+                    Import JSON data
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-panel="panel-export" onclick="showPanel('panel-export')">
+                    Export my data
+                    </button>
+                </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===== Main area ===== -->
+        <main id="dashboard-main" tabindex="-1" aria-live="polite">
+
+        <!-- Main top bar: welcome, notifications, back to home -->
+            <header class="main-topbar container" aria-label="Dashboard header">
+                <h1 class="welcome">Welcome back, <span class="user-name">Mr Benard!</span></h1>
+
+                <div class="topbar-actions">
+                
+
+                <!-- Back to Home -->
+                <a class="btn-back" href="index.html">
+                    <span class="icon" aria-hidden="true">←</span>
+                    <span class="label-desktop">Back to Home</span>
+                    <span class="label-mobile">Back</span>
+                </a>
+
+                <!-- Notifications -->
+                <button type="button" class="notify-btn" aria-label="Notifications">
+                    <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#F59E0B" d="M12 2a4 4 0 0 0-4 4v1.1C6 8.1 5 9.6 5 11.3V16l-1.5 1.5a1 1 0 0 0 .7 1.7h15.6a1 1 0 0 0 .7-1.7L19 16v-4.7c0-1.7-1-3.2-3-4.2V6a4 4 0 0 0-4-4Zm0 20a3 3 0 0 0 3-3H9a3 3 0 0 0 3 3Z"/>
+                    </svg>
+                    <span class="badge" aria-live="polite" aria-atomic="true">3</span>
+                </button>
+                </div>
+
+                <button class="dashboard-nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle menu bar">
+                    <img src="assets/icons/menu_icon.svg" alt="Dashboard Menu toggler" />
+                </button>
+            </header>
+
+
+            <!-- ===== Statistics + Budget Progress (Dashboard) ===== -->
+            <section class="dashboard-stats container" id="panel-stats">
+
+                <ul class="stat-cards">
+                    <!-- Total Income -->
+                    <li>
+                    <article class="stat-card" aria-labelledby="stat-income-title">
+                        <h3 id="stat-income-title">Total Income</h3>
+                        <p class="stat-value">
+                        <output id="statIncome" aria-live="polite" aria-atomic="true">—</output>
+                        </p>
+                        <p class="stat-note">
+                        Period: <span id="statIncomePeriod">This month</span>
+                        </p>
+                    </article>
+                    </li>
+
+                    <!-- Total Expenses (+ top category) -->
+                    <li>
+                    <article class="stat-card" aria-labelledby="stat-expense-title">
+                        <h3 id="stat-expense-title">Total Expenses</h3>
+                        <p class="stat-value">
+                        <output id="statExpenses" aria-live="polite" aria-atomic="true">—</output>
+                        </p>
+                        <p class="stat-note">
+                        Most spending in <strong id="topExpenseCategory">—</strong>
+                        </p>
+                    </article>
+                    </li>
+
+                    <!-- Financial Health -->
+                    <li>
+                    <article class="stat-card" aria-labelledby="stat-health-title">
+                        <h3 id="stat-health-title">Financial Health</h3>
+                        <!-- 0 (poor) → 100 (excellent) -->
+                        <meter id="healthMeter"
+                            min="0" max="100" low="35" high="75" optimum="85"
+                            value="70" aria-describedby="healthDesc">
+                        0 out of 100
+                        </meter>
+                        <p id="healthDesc" class="stat-note">
+                        Score: <output id="healthScore" aria-live="polite" aria-atomic="true">70</output>/100
+                        </p>
+                    </article>
+                    </li>
+                </ul>
+
+                <!-- Budget progress by category -->
+                <section class="budget-progress" aria-labelledby="budget-title">
+                    <h3 id="budget-title">Budget progress by category</h3>
+                    <p class="sr-only" id="budget-help">
+                    Each meter shows how much of the category budget is used this period.
+                    </p>
+
+                    <ul class="budget-list" aria-describedby="budget-help" id="budgetList">
+                    <!-- Food -->
+                    
+                    </ul>
+                </section>
+            </section>
+
+
+            <section id="panel-add-income" aria-labelledby="add-income-title" style="display: none;">
+                <h2 id="add-income-title">Add new Income</h2>
+
+                <!-- Income reporting form -->
+                <p id="income-msg" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+
+                <form id="income-form" novalidate>
+                    <!-- hidden ID field for editing income entries -->
+                    <input type="hidden" id="income-id" name="id" />
+                    <div class="field">
+                        <label for="income-currency">Currency</label>
+                        <select id="income-currency" name="currency" required aria-describedby="income-currency-hint">
+                            <option value="RWF" selected>RWF — Rwandan Franc</option>
+                            <option value="NGN">NGN — Naira</option>
+                            <option value="USD">USD — US Dollar</option>
+                        </select>
+                        <small id="income-currency-hint" class="hint">
+                            Default is RWF. Other choices will be converted to RWF by Hugo.
+                        </small>
+                    </div>
+                    <div class="field">
+                        <label for="income-amount">Amount</label>
+                        <input
+                            id="income-amount"
+                            name="amount"
+                            type="number"
+                            inputmode="decimal"
+                            step="0.01"
+                            min="0.01"
+                            placeholder="0.00"
+                            required
+                            aria-describedby="income-amount-hint"
+                        />
+                        <small id="income-amount-hint" class="hint">Enter a positive amount (e.g., 1500 or 1500.50)</small>
+                        <small class="error" id="err-amount" hidden>Amount must be a positive number.</small>
+                    </div>
+
+                    <div class="field">
+                    <label for="income-date">Date received</label>
+                    <input
+                        id="income-date"
+                        name="date"
+                        type="date"
+                        required
+                        aria-describedby="income-date-hint"
+                    />
+                    <small id="income-date-hint" class="hint">Cannot be a future date.</small>
+                    <small class="error" id="err-date" hidden>Please pick a valid date (not in the future).</small>
+                    </div>
+
+                    <div class="field">
+                    <label for="income-source">Source of income</label>
+                    <input
+                        id="income-source"
+                        name="source"
+                        type="text"
+                        placeholder="e.g., Scholarship, Part-time job"
+                        required
+                        aria-describedby="income-source-hint"
+                    />
+                    <small id="income-source-hint" class="hint">Short description of where this income came from.</small>
+                    <small class="error" id="err-source" hidden>Enter at least 5 letters.</small>
+                    </div>
+
+                    <div class="actions">
+                    <button type="submit" id="income-submit" class="btn-primary">Record income</button>
+                    </div>
+                </form>
+            </section>
+
+
+            <!-- adding a new expenses panel/section -->
+             <section id="panel-add-expense" aria-labelledby="add-expense-title" style="display: none;">
+                <h2 id="add-expense-title">Report an expenses</h2>
+
+                <!-- live feedback for screen readers -->
+                <p id="expense-msg" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+
+                <form id="expense-form" novalidate>
+                    <!-- hidden ID field for editing expense entries -->
+                     <input type="hidden" id="expense-id" name="id" />
+
+                    <!-- Currency -->
+                    <div class="field">
+                    <label for="expense-currency">Currency</label>
+                    <select id="expense-currency" name="currency" required aria-describedby="expense-currency-hint">
+                        <option value="RWF" selected>RWF — Rwandan Franc</option>
+                        <option value="NGN">NGN — Naira</option>
+                        <option value="USD">USD — US Dollar</option>
+                    </select>
+                    <small id="expense-currency-hint" class="hint">
+                        Default is RWF. Other choices will be converted to RWF in your logic.
+                    </small>
+                    </div>
+
+                    <!-- Amount -->
+                    <div class="field">
+                    <label for="expense-amount">Amount spent</label>
+                    <input
+                        id="expense-amount"
+                        name="amount"
+                        type="number"
+                        inputmode="decimal"
+                        step="0.01"
+                        min="0.01"
+                        placeholder="0.00"
+                        required
+                        aria-describedby="expense-amount-hint"
+                    />
+                    <small id="expense-amount-hint" class="hint">Enter a positive amount (e.g., 2500 or 2500.50)</small>
+                    <small class="error" id="exp-err-amount" hidden>Amount must be a positive number.</small>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="field">
+                    <label for="expense-category">Category</label>
+                    <select id="expense-category" name="category" required aria-describedby="expense-category-hint">
+                        <option value="">Select a category</option>
+                        <option value="Food">Food</option>
+                        <option value="Books">Books</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Fees">Fees</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <small id="expense-category-hint" class="hint">Choose a category. Select “Other” to specify.</small>
+                    <small class="error" id="exp-err-category" hidden>Please choose a category.</small>
+                    </div>
+
+                    <!-- Other category shown in other categories -->
+                    <div class="field" id="expense-other-wrap" style="display: none;">
+                        <label for="expense-category-other">Other category name</label>
+                        <input
+                            id="expense-category-other"
+                            name="categoryOther"
+                            type="text"
+                            placeholder="e.g., Health, Data bundle"
+                            aria-describedby="expense-category-other-hint"
+                        />
+                        <small id="expense-category-other-hint" class="hint">Use at least 3–5 letters.</small>
+                        <small class="error" id="exp-err-category-other" hidden>Please enter a category name.</small>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="field">
+                    <label for="expense-description">Description</label>
+                    <input
+                        id="expense-description"
+                        name="description"
+                        type="text"
+                        placeholder="e.g., Lunch at cafeteria"
+                        required
+                        aria-describedby="expense-description-hint"
+                    />
+                    <small id="expense-description-hint" class="hint">Enter at least 5 letters.</small>
+                    <small class="error" id="exp-err-description" hidden>Enter at least 5 letters.</small>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="field">
+                    <label for="expense-date">Date of spending</label>
+                    <input
+                        id="expense-date"
+                        name="date"
+                        type="date"
+                        required
+                        aria-describedby="expense-date-hint"
+                    />
+                    <small id="expense-date-hint" class="hint">Cannot be a future date.</small>
+                    <small class="error" id="exp-err-date" hidden>Please pick a valid date (not in the future).</small>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="actions">
+                    <button type="submit" id="expense-submit" class="btn-primary">Record expense</button>
+                    </div>
+                </form>
+            </section>
+
+
+            <!-- The section for viewing all transactions -->
+            <section id="panel-transactions" aria-labelledby="txns-title" style="display: none;">
+                <div class="txns-toolbar">
+                <h2 id="txns-title">Transactions</h2>
+
+                <form id="txns-search" role="search" onsubmit="return false">
+                    <label for="txns-query" class="sr-only">Search transactions</label>
+                    <input id="txns-query" type="search" placeholder="Search by text…" autocomplete="off">
+                </form>
+                </div>
+
+                <!-- Cards (mobile-first) -->
+                <div id="txns-cards" class="txns-cards"></div>
+
+                <!-- Table (shown on desktop) -->
+                <div class="txns-table-wrap">
+                    <table id="txns-table" class="txns-table">
+                    <caption class="sr-only">Transactions list</caption>
+                    <thead>
+                        <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="txns-tbody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- making the settings panel -->
+                        
+            <section id="panel-settings" aria-labelledby="settings-title" style="display:none">
+            <div class="settings-header">
+                <h2 id="settings-title">Settings</h2>
+                <p class="settings-note">Set your name and monthly budgets. Changes save to your browser.</p>
+            </div>
+
+            <form id="settings-form" class="settings-form" onsubmit="return State.handleSettingsSubmit(event)">
+                <fieldset class="settings-group" aria-labelledby="user-legend">
+                <legend id="user-legend">User</legend>
+                <div class="settings-grid">
+                    <div class="field">
+                    <label for="user-name">Your name</label>
+                    <input id="user-name" name="name" type="text" placeholder="eg. Benard Lamptey" autocomplete="name">
+                    </div>
+                </div>
+                </fieldset>
+
+                <fieldset class="settings-group" aria-labelledby="budgets-legend">
+                <legend id="budgets-legend">Monthly Budgets (RWF)</legend>
+                <div class="settings-grid">
+                    <div class="field"><label for="budget-food">Food</label>
+                    <input id="budget-food" name="budget.food" type="number" min="0" step="1" placeholder="e.g., 120000">
+                    </div>
+                    <div class="field"><label for="budget-books">Books</label>
+                    <input id="budget-books" name="budget.books" type="number" min="0" step="1">
+                    </div>
+                    <div class="field"><label for="budget-transport">Transport</label>
+                    <input id="budget-transport" name="budget.transport" type="number" min="0" step="1">
+                    </div>
+                    <div class="field"><label for="budget-entertainment">Entertainment</label>
+                    <input id="budget-entertainment" name="budget.entertainment" type="number" min="0" step="1">
+                    </div>
+                    <div class="field"><label for="budget-fees">Fees</label>
+                    <input id="budget-fees" name="budget.fees" type="number" min="0" step="1">
+                    </div>
+                    <div class="field"><label for="budget-other">Other</label>
+                    <input id="budget-other" name="budget.other" type="number" min="0" step="1">
+                    </div>
+                </div>
+                </fieldset>
+
+                <fieldset class="settings-group" aria-labelledby="prefs-legend">
+                <legend id="prefs-legend">Preferences</legend>
+                <div class="settings-grid">
+                    <div class="field">
+                    <label for="theme-choice">Theme</label>
+                    <select id="theme-choice" name="theme">
+                        <option value="system">System</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                    </div>
+                    <div class="field">
+                    <label for="warn-over-cap">Warn when category hits cap</label>
+                    <select id="warn-over-cap" name="warnOverCap">
+                        <option value="on">On</option>
+                        <option value="off">Off</option>
+                    </select>
+                    </div>
+                </div>
+                </fieldset>
+
+                <div class="settings-actions">
+                <button type="submit" onclick="return handleSettingsSubmit(event)" class="btn-primary">Save settings</button>
+                <button class="btn-primary" type="button" onclick="resetSettings()">Reset Settings</button>
+                <span id="settings-msg" role="status" aria-live="polite" class="settings-msg"></span>
+                </div>
+            </form>
+            </section>
+
+            <!-- EXPORT -->
+            <section id="panel-export" aria-labelledby="export-title" style="display:none">
+            <h2 id="export-title">Export</h2>
+            <div class="transfer-card">
+                <p>Download your data as JSON.</p>
+                <div class="radio-row" role="group" aria-label="Export scope">
+                <label><input type="radio" name="export-scope" value="all" checked> All (settings + transactions)</label>
+                <label><input type="radio" name="export-scope" value="records"> Transactions only</label>
+                <label><input type="radio" name="export-scope" value="settings"> Settings only</label>
+                </div>
+                <button type="button" class="btn-primary" onclick="exportJSON()">Export JSON</button>
+            </div>
+            </section>
+
+            <!-- IMPORT panel -->
+            <section id="panel-import" aria-labelledby="import-title" style="display:none">
+                <h2 id="import-title">Import</h2>
+                <p>Pick a JSON file. We’ll auto-detect whether it has settings, transactions, or both.</p>
+                <input id="import-file" type="file" accept="application/json" onchange="importJSONFromFile(this)">
+                <div style="margin-top:.5rem">
+                    <button type="button" class="btn-primary" onclick="importDefaultJSON()">Import default Hugo data</button>
+                </div>
+                <div id="import-msg" role="status" aria-live="polite"></div>
+            </section>
+
+
+        </main>
+    </div>
+
+</body>
+<script src="scripts/state.js" type="module"></script>
+<script src="scripts/add_income.js" type="module"></script>
+<script src="scripts/add_expense.js" type="module"></script>
+<script src="scripts/validators.js" type="module"></script>
+<script src="scripts/state.js" type="module"></script>
+<script src="scripts/load_transactions.js" type="module"></script>
+<script src="scripts/dashboard-ui.js" type="module"></script>
+
+<script>
+    //dom element for showing each panel
+
+    function showPanel(panelId) {
+        // Hide all panels
+        document.querySelectorAll('main > section').forEach(section => {
+            section.style.display="none";
+        });
+
+        // Show the selected panel
+        const panel = document.getElementById(panelId);
+        if (panel) {
+            panel.style.display = "block";
+        }
+    }
+</script>
+<script type="module">
+  import { viewTransactions } from './scripts/load_transactions.js';
+  window.viewTransactions = viewTransactions; // make it global
+</script>
+</html>

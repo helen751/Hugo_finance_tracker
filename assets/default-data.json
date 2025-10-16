@@ -1,0 +1,77 @@
+{
+  "settings": {
+    "name": "Hugo User",
+    "theme": "system",
+    "warnOverCap": "on",
+    "budget": {
+      "food": 120000,
+      "books": 30000,
+      "transport": 45000,
+      "entertainment": 20000,
+      "fees": 600000,
+      "other": 15000
+    }
+  },
+  "transactions": [
+    {
+      "id": "txn_seed_1",
+      "description": "Scholarship disbursement",
+      "amount": 500000,
+      "currency": "RWF",
+      "original": { "amount": 500000, "currency": "RWF" },
+      "category": "Income",
+      "type": "income",
+      "date": "2025-09-01",
+      "createdAt": "2025-09-01T08:00:00.000Z",
+      "updatedAt": "2025-09-01T08:00:00.000Z"
+    },
+    {
+      "id": "txn_seed_2",
+      "description": "Lunch at cafeteria",
+      "amount": 2500,
+      "currency": "RWF",
+      "original": { "amount": 2500, "currency": "RWF" },
+      "category": "Food",
+      "type": "expense",
+      "date": "2025-09-03",
+      "createdAt": "2025-09-03T12:30:00.000Z",
+      "updatedAt": "2025-09-03T12:30:00.000Z"
+    },
+    {
+      "id": "txn_seed_3",
+      "description": "ALU Bus pass",
+      "amount": 12000,
+      "currency": "RWF",
+      "original": { "amount": 12000, "currency": "RWF" },
+      "category": "Transport",
+      "type": "expense",
+      "date": "2025-09-05",
+      "createdAt": "2025-09-05T09:10:00.000Z",
+      "updatedAt": "2025-09-05T09:10:00.000Z"
+    },
+    {
+      "id": "txn_seed_4",
+      "description": "Health Insurance",
+      "amount": 35000,
+      "currency": "RWF",
+      "original": { "amount": 35000, "currency": "RWF" },
+      "category": "Books",
+      "type": "expense",
+      "date": "2025-09-10",
+      "createdAt": "2025-09-10T14:00:00.000Z",
+      "updatedAt": "2025-09-10T14:00:00.000Z"
+    },
+    {
+      "id": "txn_seed_5",
+      "description": "Movie night",
+      "amount": 5000,
+      "currency": "RWF",
+      "original": { "amount": 5000, "currency": "RWF" },
+      "category": "Entertainment",
+      "type": "expense",
+      "date": "2025-09-15",
+      "createdAt": "2025-09-15T19:30:00.000Z",
+      "updatedAt": "2025-09-15T19:30:00.000Z"
+    }
+  ]
+}

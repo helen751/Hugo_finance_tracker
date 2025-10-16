@@ -1,3 +1,4 @@
+
 (() => {
   const track   = document.getElementById('slider');
   const wrapper = track.closest('.testimonial-slider');
@@ -76,3 +77,25 @@ navLinks.forEach(link => {
         nav.classList.remove('show');
     });
 });
+
+//adding a script to handle the dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+
+    //getting the current theme under settings from local storage if it exists
+    import { loadSettings } from './storage.js';
+    const currentTheme = (loadSettings().theme || 'system');
+
+    // Apply the current theme on page load
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        themeToggle.checked = currentTheme === 'dark';
+        document.querySelector('.theme-text').textContent = currentTheme === 'dark' ? 'Light mode' : 'Dark mode';
+    }
+
+    // Listen for changes on the toggle
+    themeToggle.addEventListener('change', function() {
+        const newTheme = this.checked ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.querySelector('.theme-text').textContent = newTheme === 'dark' ? 'Light mode' : 'Dark mode';
+    });

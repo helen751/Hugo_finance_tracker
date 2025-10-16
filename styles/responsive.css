@@ -1,5 +1,8 @@
-/* responsiveness code for the screen 992 and above */
-
+/* responsiveness code for the screen 575.98 and above */
+@media (max-width: 575.98px){
+  .label-desktop{ display: none; }
+  .label-mobile{ display: inline; }
+}
 @media (min-width: 768px) {
     .container { 
         max-width: 800px; 
@@ -108,4 +111,122 @@
 
 
 
+/* dashboard responsiveness code */
 
+@media (min-width: 768px) {
+  .stat-cards {
+    grid-template-columns: repeat(3, 1fr);
+    } 
+  .budget-list {
+    grid-template-columns: repeat(3, 1fr);
+    }
+  #panel-add-income, #panel-add-expense, #panel-import, #panel-export, #panel-settings {
+    padding: 1.25rem;
+    }
+  .txns-cards { 
+    display: none; 
+    }
+  .txns-table-wrap { 
+    display: block; 
+    }
+
+    .txns-toolbar{ display:flex; 
+        align-items:center; 
+        gap:1rem; 
+    }
+    .txns-toolbar h2{ 
+        margin:0;
+    }
+    #txns-search{ 
+        margin-top:0; 
+        margin-left:auto; 
+        flex-direction:row; 
+        align-items:center; 
+        min-width:320px; 
+        max-width:520px; 
+    }
+    #txns-search input{ 
+        flex:1 1 auto; 
+    }
+}
+
+
+@media (min-width: 992px) {
+    .dashboard-layout{
+        align-items: stretch;
+    }
+    .dashboard-layout .sidebar{
+       display: block;
+        position: sticky;
+        top: 0;
+        height: 100dvh;
+        flex: 0 0 clamp(200px, 22vw, 260px);
+        max-width: 280px;
+        overflow: auto;  
+        z-index: 100;   
+        box-shadow: 2px 0 8px rgba(0,0,0,.06);
+    }
+    .dashboard-layout main{
+        flex: 1;
+        min-width: 0;
+        overflow: visible;
+    }
+    main .main-topbar{
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        width: 100%;
+        gap: 2rem;
+        padding: 1.5rem 2rem;
+        backdrop-filter: saturate(1.1) blur(4px); 
+        background: color-mix(in oklab, var(--bg) 85%, transparent);
+    }
+    main .main-topbar h1{
+        font-size: 1.5rem;
+    }
+    .dashboard-nav-toggle{
+        display: none;
+    }
+    .btn-back{
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        font-size: normal;
+    }
+    #income-form, #expense-form {
+        width: 50%;
+        max-width: none;
+        margin: 2rem auto;
+        padding: 1.25rem;
+    }
+    #panel-import, #panel-export, #panel-settings {
+    margin: 3rem;
+    width: 70%;
+}
+}
+
+@media (max-width: 991.98px){
+    .sidebar{
+        display: block;                 /* keep box to animate */
+        position: fixed;
+        inset: 0 auto 0 0;              /* left panel */
+        width: 85vw;
+        max-width: 280px;
+        height: 100dvh;
+        background: var(--bg);
+        box-shadow: 2px 0 16px rgba(0,0,0,.15);
+        transform: translateX(-24px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .3s ease, opacity .3s ease;
+        z-index: 1000;
+        overflow: auto;
+    }
+    .sidebar.is-open{
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* optional: lock body scroll when open */
+    body.nav-open{ overflow: hidden; }
+}
