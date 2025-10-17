@@ -84,10 +84,10 @@ export function viewTransactions(view = 'all'){
       <p class="txn-desc">${escapeHtml(txn.description || '')}</p>
       <div class="txn-actions">
         <button class="icon-btn" data-id="${txn.id}" aria-label="Edit" onclick="editTxn(this.dataset.id)">
-        <img src="../assets/icons/edit.svg" alt="" width="18" height="18">
+        <img src="assets/icons/edit.svg" alt="" width="18" height="18">
         </button>
         <button class="icon-btn" data-id="${txn.id}" aria-label="Delete" onclick="deleteTxn(this.dataset.id)">
-        <img src="../assets/icons/delete.svg" alt="" width="18" height="18">
+        <img src="assets/icons/delete.svg" alt="" width="18" height="18">
         </button>
         </div>
     `;
@@ -105,10 +105,10 @@ export function viewTransactions(view = 'all'){
       <td>RWF ${Number(txn.amount).toLocaleString()}</td>
       <td class="txn-actions-td">
     <button class="icon-btn" data-id="${txn.id}" aria-label="Edit" onclick="editTxn(this.dataset.id)">
-          <img src="../assets/icons/edit.svg" alt="" width="18" height="18">
+          <img src="assets/icons/edit.svg" alt="" width="18" height="18">
         </button>
         <button class="icon-btn" data-id="${txn.id}" aria-label="Delete" onclick="deleteTxn(this.dataset.id)">
-          <img src="../assets/icons/delete.svg" alt="" width="18" height="18">
+          <img src="assets/icons/delete.svg" alt="" width="18" height="18">
         </button>
       </td>
     `;
