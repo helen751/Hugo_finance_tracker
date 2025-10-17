@@ -246,4 +246,4 @@ All UI and code are original and reserved to the author unless stated otherwise.
 - Icons and avatars are custom SVGs in `assets/icons/` and `assets/testimonials/` generated for me by ChatGPT.
 - No frameworks used. All credit to the course rubric for requirements & milestones.
 
-# <a href="https://helen751.github.io/frontend-web-dev-summative-Helen_Okereke/">Watch demo video here</a>
+# <a href="https://youtu.be/y9dxECRRAY0">Watch demo video here</a>
