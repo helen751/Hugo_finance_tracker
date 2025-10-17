@@ -16,20 +16,20 @@ A mobile‑first, accessible, framework‑free personal finance tracker for reco
   - Sticky sidebar (desktop) + mobile hamburger.
 - **Add Income / Add Expense**
   - Client‑side validation (amount, date not in future, description/source ≥ 5 letters).
-  - Currency input (RWF, NGN, USD) with **manual conversion** to RWF.
+  - Currency input (RWF, NGN, USD) with **automatic conversion** to RWF.
   - Expense categories: Food, Books, Transport, Entertainment, Fees, Other (+ “Other” free‑text).
 - **Transactions View**
   - Mobile cards + desktop table.
-  - Live **search** (safe regex compilation; user text treated literally).
+  - Live **search** (safe regex compilation, search for any word; user text treated literally).
   - **Edit / Delete** actions (edit pre‑fills the appropriate form).
 - **Settings**
   - User name, theme (light/dark/system), warning preference, and **budget caps per category**.
 - **Import / Export**
   - Export **settings / transactions / both** as JSON.
   - Import JSON (auto‑detect structure). Duplicate IDs are re‑keyed.
-  - **Default dataset** (`assets/default-data.json`) for quick demo.
+  - **Default dataset** (`assets/seed.json`) for quick demo.
 - **Theming**
-  - Light/Dark/System via `data-theme` on `<html>` and `prefers-color-scheme`.
+  - Light/Dark/System via `data-theme` on `<html>` and `prefers-color-scheme` `Dashboard automatically takes your system theme as default`.
 - **Accessibility**
   - Semantic regions, labels, ARIA where needed, visible focus, keyboard support.
   - Live regions for stat outputs and safe color contrast.
@@ -49,15 +49,17 @@ HUGO_FINANCE_TRACKER/
 ├── scripts/
 │   ├── add_expense.js
 │   ├── add_income.js
-│   ├── dashboard-ui.js         # stats, budgets, sidebar toggle
+│   ├── dashboard-ui.js         # stats display, budgets, sidebar toggle
 │   ├── load_transactions.js    # transactions list (cards/table + search + edit/delete)
 │   ├── state.js                # rates, ids, theme, import/export helpers
 │   ├── storage.js              # localStorage I/O (settings & transactions)
-│   ├── ui.js                   # small helpers used by pages (if any)
-│   └── validators.js           # regex & input validation
+│   ├── ui.js                   # Index page slider and mobile nav toggle.
+│   └── validators.js           # regex & form input validation
 ├── styles/
-│   ├── main-style.css
-│   └── responsive.css
+│   ├── main-style.css          # all css styles (mobile first)
+│   └── responsive.css          # all responsiveness code
+├── tests/
+│   ├── my test files here
 ├── dashboard.html              # app dashboard (aside + panels)
 └── index.html                  # marketing/home page
 ```
@@ -82,13 +84,13 @@ HUGO_FINANCE_TRACKER/
   "description": "Lunch at cafeteria",
   "amount": 12500,               // number, stored in RWF
   "currency": "RWF",             // normalized currency
-  "original": {                  // what the user entered
+  "original": {                  // default currency the user entered
     "amount": 12.5,
     "currency": "USD"
   },
   "category": "Food",            // free text (mapped to settings caps)
   "type": "income" | "expense",
-  "date": "2025-09-25",          // ISO YYYY-MM-DD
+  "date": "2025-09-25",          // Format: YYYY-MM-DD (date of transaction)
   "createdAt": "2025-09-25T10:24:31.321Z",
   "updatedAt": "2025-09-25T10:24:31.321Z"
 }
@@ -98,8 +100,8 @@ HUGO_FINANCE_TRACKER/
 
 ```jsonc
 {
-  "name": "Ada Lovelace",
-  "theme": "system",             // 'light' | 'dark' | 'system'
+  "name": "Helen Okereke",
+  "theme": "system",             // 'light' | 'dark' | 'system by default'
   "warnOverCap": "on",           // string flag
   "budget": {
     "food": 100000,
@@ -125,14 +127,14 @@ HUGO_FINANCE_TRACKER/
 
 1. **Clone / Download** this folder.
 2. Open **`index.html`** in a modern browser.  
-   Open **`dashboard.html`** to use the app.
+   Open **`dashboard.html or navigate from the index page`** to use the app.
 3. (Optional) Click **Import default data** in *Import* panel to preload demo records/settings.
 
 > No build step, no server required. Files are plain HTML/CSS/JS. For Chrome’s strict file URL policies, you can use a lightweight server (e.g., VS Code “Live Server” extension).
 
 ---
 
-## 🧭 App Anatomy (Dashboard)
+## 🧭 App Sketch (Dashboard)
 
 - **Aside (sidebar)** – logo + navigation (Dashboard, Add Income, Add Expense, Transactions, Settings, Import, Export).  
   - Mobile: hidden by default; toggled via hamburger.
@@ -155,7 +157,7 @@ Navigation buttons call a small helper that sets `display:block` on the chosen p
   Implementation: `validateAmount()` in `validators.js`.
 - **Date** – not in the future.  
   Implementation: `validateDateNotFuture()`.
-- **Text fields** – at least **5 letters** (source/description), and 3 letters for “Other category” name.  
+- **Text fields** – at least **5 letters** (source/description), and 3 letters minimum for “Other category” name.  
   Implementation: `validateMinLetters()`.
 
 > Regex input from the user is **not** executed. For live search, user input is escaped and compiled safely.
@@ -179,7 +181,7 @@ Navigation buttons call a small helper that sets `display:block` on the chosen p
     - an **object** `{ settings?, transactions? }`.
   - **Duplicate IDs** are re‑keyed via a fresh `uid()` so nothing is overwritten unexpectedly.
   - After import, a `txn:added` event prompts the UI to refresh.
-- **Default dataset** lives at `assets/default-data.json` and can be imported with one click.
+- **Default dataset** lives at `assets/seed.json` and can be imported with one click.
 
 ---
 
@@ -220,7 +222,6 @@ Navigation buttons call a small helper that sets `display:block` on the chosen p
 - Currency rates are manual demo values (no live API by design).
 - No authentication; data stays on the device.
 - Basic conflict handling for imports (IDs only).
-- Tests are minimal; add more assertions in a `tests.html` page if required by rubric.
 
 ---
 
@@ -241,5 +242,5 @@ All UI and code are original and reserved to the author unless stated otherwise.
 
 ## 🙌 Acknowledgements
 
-- Icons and avatars are custom SVGs in `assets/icons/` and `assets/testimonials/`.
+- Icons and avatars are custom SVGs in `assets/icons/` and `assets/testimonials/` generated for me by ChatGPT.
 - No frameworks used. All credit to the course rubric for requirements & milestones.

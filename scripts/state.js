@@ -125,7 +125,7 @@ function importJSONFromFile(inputEl){
 function importDefaultJSON(){
   const msg = byId('import-msg');
   let ok = false;
-  fetch('assets/default-data.json')
+  fetch('assets/seed.json')
     .then(r => r.json())
     .then(data => {
 

@@ -1,5 +1,6 @@
 //storage.js
 import { loadTxns, saveTxns } from './storage.js';
+import { refreshStats } from './dashboard-ui.js';
 
 const cardsWrap = document.getElementById('txns-cards');
 const tbody     = document.getElementById('txns-tbody');
@@ -54,6 +55,9 @@ export function viewTransactions(view = 'all'){
         });
     }
     list = list.sort(sortByCreatedAtDesc);
+    
+    //exporting the last rendered transactions for CSV export
+    window._lastRenderedTxns = list;
 
   // Adding a count status at the top
   const labels = { all: 'All', income: 'Income', expense: 'Expenses' };
@@ -124,9 +128,9 @@ function escapeHtml(s){
 }
 
 // update the view when a transaction is added, deleted, or updated
-document.addEventListener('txn:added',   () => viewTransactions(window.currentView));
-document.addEventListener('txn:deleted', () => viewTransactions(window.currentView));
-document.addEventListener('txn:updated', () => viewTransactions(window.currentView));
+document.addEventListener('txn:added',   () => {viewTransactions(window.currentView); refreshStats()});
+document.addEventListener('txn:deleted', () => {viewTransactions(window.currentView); refreshStats()});
+document.addEventListener('txn:updated', () => {viewTransactions(window.currentView); refreshStats()});
 
 // function to get a transaction by id
 function getTxnById(id){
@@ -216,5 +220,41 @@ window.deleteTxn = function(id){
   if (!confirm('Are you sure you want to delete this transaction?')) return;
   deleteTxnById(id);
   viewTransactions(window.currentView || 'all');
+};
+
+// minimal CSV export of whatever is currently rendered
+window.exportTxnsCSV = function () {
+  const list = window._lastRenderedTxns || [];
+  if (!list.length) { alert('No transactions to export.'); return; }
+
+  // simple CSV cell escape
+  const esc = s => {
+    const v = (s ?? '').toString();
+    return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+  };
+
+  const header = [
+    'id','type','category','description',
+    'amount_RWF','currency','original_amount','original_currency',
+    'date','createdAt','updatedAt'
+  ];
+
+  const rows = list.map(t => [
+    t.id, t.type, t.category, t.description,
+    (Number(t.amount ?? 0)).toFixed(2), 'RWF',
+    (Number(t.original?.amount ?? 0)).toFixed(2),
+    (t.original?.currency || 'RWF'),
+    t.date || '', t.createdAt || '', t.updatedAt || ''
+  ]);
+
+  const csv = '\uFEFF' + [header, ...rows].map(r => r.map(esc).join(',')).join('\n');
+
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8;' }));
+  const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g,'-');
+  a.download = `transactions-${stamp}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 };
 

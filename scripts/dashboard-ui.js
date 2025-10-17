@@ -99,7 +99,7 @@ function aggregateMonth(){
   }
 
   // Health score (simple savings rate)
-  let health = 70;
+  let health = 0;
   if (income > 0){
     const ratio = (income - expense) / income; // savings rate
     health = Math.max(0, Math.min(100, Math.round(50 + ratio * 50)));
@@ -135,6 +135,9 @@ export function renderStatCards(){
 export function renderBudgetProgress(){
   const settings = loadSettings();
   const budgetObj = (settings && settings.budget) || {};
+  
+  // updating the username, welcome bar.
+  document.getElementById("userName").innerHTML = (settings.name) || "Mr Benard";
   const listEl = document.getElementById('budgetList');
   if (!listEl) return;
 

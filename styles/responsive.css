@@ -148,6 +148,9 @@
     #txns-search input{ 
         flex:1 1 auto; 
     }
+    .about .container .about-wrapper .about-content a{
+    margin-right: 20%;
+    }
 }
 
 
@@ -156,10 +159,10 @@
         align-items: stretch;
     }
     .dashboard-layout .sidebar{
-       display: block;
+        display: block;
         position: sticky;
         top: 0;
-        height: 100dvh;
+        height: 150dvh;
         flex: 0 0 clamp(200px, 22vw, 260px);
         max-width: 280px;
         overflow: auto;  
@@ -212,7 +215,7 @@
     width: 85vw;
     max-width: 280px;
     height: 100dvh;
-    background: var(--bg);
+    background: var(--brand);
     box-shadow: 2px 0 16px rgba(0,0,0,.15);
     transform: translateX(-100%);   /* completely hidden off-screen */
     opacity: 0;
