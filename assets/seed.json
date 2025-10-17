@@ -1,134 +1,149 @@
-[
-  {
-    "id": "txn_20251001_01",
-    "description": "October Salary",
-    "amount": 1120000.00,
-    "currency": "RWF",
-    "original": { "amount": 800.00, "currency": "USD" },
-    "category": "Income",
-    "type": "income",
-    "date": "2025-10-01",
-    "createdAt": "2025-10-01T09:00:00.000Z",
-    "updatedAt": "2025-10-01T09:00:00.000Z"
+{
+  "settings": {
+    "name": "Helen",
+    "theme": "dark",
+    "warnOverCap": "on",
+    "budget": {
+      "food": 500000,
+      "books": 30000,
+      "transport": 45000,
+      "entertainment": 200000,
+      "fees": 600000,
+      "other": 100000
+    }
   },
-  {
-    "id": "txn_20251003_01",
-    "description": "Groceries at Kimironko Market",
-    "amount": 45000.00,
-    "currency": "RWF",
-    "original": { "amount": 45000.00, "currency": "RWF" },
-    "category": "Food",
-    "type": "expense",
-    "date": "2025-10-03",
-    "createdAt": "2025-10-03T14:20:00.000Z",
-    "updatedAt": "2025-10-03T14:20:00.000Z"
-  },
-  {
-    "id": "txn_20251004_01",
-    "description": "Fuel top-up",
-    "amount": 12000.00,
-    "currency": "RWF",
-    "original": { "amount": 12000.00, "currency": "RWF" },
-    "category": "Transport",
-    "type": "expense",
-    "date": "2025-10-04",
-    "createdAt": "2025-10-04T10:15:00.000Z",
-    "updatedAt": "2025-10-04T10:15:00.000Z"
-  },
-  {
-    "id": "txn_20251005_01",
-    "description": "Gift from family",
-    "amount": 52500.00,
-    "currency": "RWF",
-    "original": { "amount": 50000.00, "currency": "NGN" },
-    "category": "Income",
-    "type": "income",
-    "date": "2025-10-05",
-    "createdAt": "2025-10-05T18:30:00.000Z",
-    "updatedAt": "2025-10-05T18:30:00.000Z"
-  },
-  {
-    "id": "txn_20251006_01",
-    "description": "Chemistry textbook",
-    "amount": 35000.00,
-    "currency": "RWF",
-    "original": { "amount": 35000.00, "currency": "RWF" },
-    "category": "Books",
-    "type": "expense",
-    "date": "2025-10-06",
-    "createdAt": "2025-10-06T13:05:00.000Z",
-    "updatedAt": "2025-10-06T13:05:00.000Z"
-  },
-  {
-    "id": "txn_20251008_01",
-    "description": "Cinema night",
-    "amount": 8500.00,
-    "currency": "RWF",
-    "original": { "amount": 8500.00, "currency": "RWF" },
-    "category": "Entertainment",
-    "type": "expense",
-    "date": "2025-10-08",
-    "createdAt": "2025-10-08T20:10:00.000Z",
-    "updatedAt": "2025-10-08T20:10:00.000Z"
-  },
-  {
-    "id": "txn_20251010_01",
-    "description": "Freelance web project",
-    "amount": 280000.00,
-    "currency": "RWF",
-    "original": { "amount": 200.00, "currency": "USD" },
-    "category": "Income",
-    "type": "income",
-    "date": "2025-10-10",
-    "createdAt": "2025-10-10T11:45:00.000Z",
-    "updatedAt": "2025-10-10T11:45:00.000Z"
-  },
-  {
-    "id": "txn_20251012_01",
-    "description": "Tuition installment",
-    "amount": 300000.00,
-    "currency": "RWF",
-    "original": { "amount": 300000.00, "currency": "RWF" },
-    "category": "Fees",
-    "type": "expense",
-    "date": "2025-10-12",
-    "createdAt": "2025-10-12T09:30:00.000Z",
-    "updatedAt": "2025-10-12T09:30:00.000Z"
-  },
-  {
-    "id": "txn_20251014_01",
-    "description": "Dinner with friends",
-    "amount": 9800.00,
-    "currency": "RWF",
-    "original": { "amount": 9800.00, "currency": "RWF" },
-    "category": "Food",
-    "type": "expense",
-    "date": "2025-10-14",
-    "createdAt": "2025-10-14T19:40:00.000Z",
-    "updatedAt": "2025-10-14T19:40:00.000Z"
-  },
-  {
-    "id": "txn_20251015_01",
-    "description": "Monthly bus card",
-    "amount": 20000.00,
-    "currency": "RWF",
-    "original": { "amount": 20000.00, "currency": "RWF" },
-    "category": "Transport",
-    "type": "expense",
-    "date": "2025-10-15",
-    "createdAt": "2025-10-15T08:10:00.000Z",
-    "updatedAt": "2025-10-15T08:10:00.000Z"
-  },
-  {
-    "id": "txn_20251016_01",
-    "description": "Household supplies",
-    "amount": 25000.00,
-    "currency": "RWF",
-    "original": { "amount": 25000.00, "currency": "RWF" },
-    "category": "Other",
-    "type": "expense",
-    "date": "2025-10-16",
-    "createdAt": "2025-10-16T16:55:00.000Z",
-    "updatedAt": "2025-10-16T16:55:00.000Z"
-  }
-]
+  "transactions":[
+    {
+      "id": "txn_20251001_01",
+      "description": "October Salary",
+      "amount": 1120000.00,
+      "currency": "RWF",
+      "original": { "amount": 800.00, "currency": "USD" },
+      "category": "Income",
+      "type": "income",
+      "date": "2025-10-01",
+      "createdAt": "2025-10-01T09:00:00.000Z",
+      "updatedAt": "2025-10-01T09:00:00.000Z"
+    },
+    {
+      "id": "txn_20251003_01",
+      "description": "Groceries at Kimironko Market",
+      "amount": 45000.00,
+      "currency": "RWF",
+      "original": { "amount": 45000.00, "currency": "RWF" },
+      "category": "Food",
+      "type": "expense",
+      "date": "2025-10-03",
+      "createdAt": "2025-10-03T14:20:00.000Z",
+      "updatedAt": "2025-10-03T14:20:00.000Z"
+    },
+    {
+      "id": "txn_20251004_01",
+      "description": "Fuel top-up",
+      "amount": 12000.00,
+      "currency": "RWF",
+      "original": { "amount": 12000.00, "currency": "RWF" },
+      "category": "Transport",
+      "type": "expense",
+      "date": "2025-10-04",
+      "createdAt": "2025-10-04T10:15:00.000Z",
+      "updatedAt": "2025-10-04T10:15:00.000Z"
+    },
+    {
+      "id": "txn_20251005_01",
+      "description": "Gift from family",
+      "amount": 52500.00,
+      "currency": "RWF",
+      "original": { "amount": 50000.00, "currency": "NGN" },
+      "category": "Income",
+      "type": "income",
+      "date": "2025-10-05",
+      "createdAt": "2025-10-05T18:30:00.000Z",
+      "updatedAt": "2025-10-05T18:30:00.000Z"
+    },
+    {
+      "id": "txn_20251006_01",
+      "description": "Chemistry textbook",
+      "amount": 35000.00,
+      "currency": "RWF",
+      "original": { "amount": 35000.00, "currency": "RWF" },
+      "category": "Books",
+      "type": "expense",
+      "date": "2025-10-06",
+      "createdAt": "2025-10-06T13:05:00.000Z",
+      "updatedAt": "2025-10-06T13:05:00.000Z"
+    },
+    {
+      "id": "txn_20251008_01",
+      "description": "Cinema night",
+      "amount": 8500.00,
+      "currency": "RWF",
+      "original": { "amount": 8500.00, "currency": "RWF" },
+      "category": "Entertainment",
+      "type": "expense",
+      "date": "2025-10-08",
+      "createdAt": "2025-10-08T20:10:00.000Z",
+      "updatedAt": "2025-10-08T20:10:00.000Z"
+    },
+    {
+      "id": "txn_20251010_01",
+      "description": "Freelance web project",
+      "amount": 280000.00,
+      "currency": "RWF",
+      "original": { "amount": 200.00, "currency": "USD" },
+      "category": "Income",
+      "type": "income",
+      "date": "2025-10-10",
+      "createdAt": "2025-10-10T11:45:00.000Z",
+      "updatedAt": "2025-10-10T11:45:00.000Z"
+    },
+    {
+      "id": "txn_20251012_01",
+      "description": "Tuition installment",
+      "amount": 300000.00,
+      "currency": "RWF",
+      "original": { "amount": 300000.00, "currency": "RWF" },
+      "category": "Fees",
+      "type": "expense",
+      "date": "2025-10-12",
+      "createdAt": "2025-10-12T09:30:00.000Z",
+      "updatedAt": "2025-10-12T09:30:00.000Z"
+    },
+    {
+      "id": "txn_20251014_01",
+      "description": "Dinner with friends",
+      "amount": 9800.00,
+      "currency": "RWF",
+      "original": { "amount": 9800.00, "currency": "RWF" },
+      "category": "Food",
+      "type": "expense",
+      "date": "2025-10-14",
+      "createdAt": "2025-10-14T19:40:00.000Z",
+      "updatedAt": "2025-10-14T19:40:00.000Z"
+    },
+    {
+      "id": "txn_20251015_01",
+      "description": "Monthly bus card",
+      "amount": 20000.00,
+      "currency": "RWF",
+      "original": { "amount": 20000.00, "currency": "RWF" },
+      "category": "Transport",
+      "type": "expense",
+      "date": "2025-10-15",
+      "createdAt": "2025-10-15T08:10:00.000Z",
+      "updatedAt": "2025-10-15T08:10:00.000Z"
+    },
+    {
+      "id": "txn_20251016_01",
+      "description": "Household supplies",
+      "amount": 25000.00,
+      "currency": "RWF",
+      "original": { "amount": 25000.00, "currency": "RWF" },
+      "category": "Other",
+      "type": "expense",
+      "date": "2025-10-16",
+      "createdAt": "2025-10-16T16:55:00.000Z",
+      "updatedAt": "2025-10-16T16:55:00.000Z"
+    }
+  ]
+}
