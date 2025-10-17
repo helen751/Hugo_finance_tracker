@@ -45,10 +45,11 @@ HUGO_FINANCE_TRACKER/
 │   ├── favicons/
 │   ├── icons/
 │   ├── testimonials/
-│   └── default-data.json
+│   └── seed.json
 ├── scripts/
 │   ├── add_expense.js
 │   ├── add_income.js
+│   ├── chart.js                #contains the code for the previous 7days chart.
 │   ├── dashboard-ui.js         # stats display, budgets, sidebar toggle
 │   ├── load_transactions.js    # transactions list (cards/table + search + edit/delete)
 │   ├── state.js                # rates, ids, theme, import/export helpers
@@ -142,7 +143,7 @@ HUGO_FINANCE_TRACKER/
   - `panel-stats` (cards + budget progress)
   - `panel-add-income`
   - `panel-add-expense`
-  - `panel-transactions` (cards/table + search)
+  - `panel-transactions` (cards/table + search + export csv)
   - `panel-settings`
   - `panel-import`
   - `panel-export`

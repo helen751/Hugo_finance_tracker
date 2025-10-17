@@ -1243,51 +1243,60 @@ meter::-moz-meter-bar {
 
 /* Title */
 .chart-title{
-  margin: 0 0 .75rem;
-  color: var(--brand);
-  font-size: 1.1rem;
-  font-weight: 700;
+    margin: 0 0 .75rem;
+    color: var(--brand);
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 /* SVG reset */
 #chart{
-  width: 100%;
-  height: auto;
-  display: block;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Axis + grid */
-.chart-axis { stroke: color-mix(in oklab, var(--ink) 35%, transparent); stroke-width: 1; }
-.chart-grid { stroke: color-mix(in oklab, var(--ink) 12%, transparent); stroke-width: 1; }
+.chart-axis { 
+    stroke: color-mix(in oklab, var(--ink) 35%, transparent); 
+    stroke-width: 1; 
+}
+.chart-grid { 
+    stroke: color-mix(in oklab, var(--ink) 12%, transparent); 
+    stroke-width: 1; 
+}
 
 /* Bars */
 .chart-bar {
-  fill: color-mix(in oklab, var(--brand) 75%, white);
-  transition: opacity .2s ease, transform .2s ease;
-  rx: 6; /* rounded corners */
+    fill: color-mix(in oklab, var(--brand) 75%, white);
+    transition: opacity .2s ease, transform .2s ease;
+    rx: 6; /* rounded corners */
 }
-.chart-bar:hover { opacity: .9; transform: translateY(-2px); }
+.chart-bar:hover { 
+    opacity: .9; 
+    transform: translateY(-2px); 
+}
 
 /* Labels */
 .chart-xlab {
-  fill: color-mix(in oklab, var(--ink) 60%, transparent);
-  font: 500 12px/1 var(--ff);
-  text-anchor: middle;
+    fill: color-mix(in oklab, var(--ink) 60%, transparent);
+    font: 500 12px/1 var(--ff);
+    text-anchor: middle;
 }
 .chart-ylab {
-  fill: color-mix(in oklab, var(--ink) 55%, transparent);
-  font: 500 11px/1 var(--ff);
-  text-anchor: end;
+    fill: color-mix(in oklab, var(--ink) 55%, transparent);
+    font: 500 11px/1 var(--ff);
+    text-anchor: end;
 }
 .chart-total {
-  fill: var(--ink);
-  font: 600 12px/1 var(--ff);
-  text-anchor: middle;
+    fill: var(--ink);
+    font: 600 12px/1 var(--ff);
+    text-anchor: middle;
 }
 .chart-card{
-  max-width: 800px; 
-  margin-inline: auto; 
-  padding: .75rem; 
+    max-width: 800px; 
+    margin-inline: auto; 
+    padding: .75rem; 
 }
 
 
