@@ -109,6 +109,7 @@ function importJSONFromFile(inputEl){
         });
         saveTxns(cur.concat(clean));
         document.dispatchEvent(new CustomEvent('txn:added')); // re-render if you listen for this
+        refreshStats();
       }
 
       if (msg) msg.textContent = 'Import complete.';
@@ -147,6 +148,7 @@ function importDefaultJSON(){
       }
       ok = true;
       if (msg) msg.textContent = 'Default data imported.';
+      refreshStats();
     })
     .catch(() => {
       if (!ok && msg) msg.textContent = 'Could not load default data.';
